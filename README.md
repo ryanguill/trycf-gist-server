@@ -1,3 +1,5 @@
+Small node server to proxy requests to gist api while adding in authentication token from environment variables.
+
 ### to build
 docker build -t ryanguill/trycf-gist-server:0.0.1 .
 

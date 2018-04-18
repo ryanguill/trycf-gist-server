@@ -18,7 +18,7 @@ server.on("request", function(req, res) {
 		const form = new formidable.IncomingForm();
 		form.maxFieldsSize = 20 * 1024 * 1024;
 		form.maxFileSize = 0;
-		form.parse(req, function(err, fields, files) {
+		form.parse(req, function(err, fields) {
 			if (err) {
 				console.error(err);
 				res.writeHead(200, { "Content-Type": "application/json" });
@@ -39,7 +39,7 @@ server.on("request", function(req, res) {
 				function(error, response, body) {
 					try {
 						const responseData = JSON.parse(body);
-						let gist_url = '';
+						let gist_url = "";
 						if (responseData.html_url) {
 							gist_url = responseData.html_url;
 						}
