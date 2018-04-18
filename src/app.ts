@@ -1,5 +1,4 @@
 import * as http from "http";
-import * as formidable from "formidable";
 import * as request from "request";
 
 const PORT = process.env.PORT || 3000;
@@ -14,18 +13,13 @@ const server = http.createServer().listen(PORT);
 
 server.on("request", function(req, res) {
 	if (req.url == "/gists" && req.method.toLowerCase() == "post") {
-		console.log(`${req.method} ${req.url} ${new Date().toISOString()}`);
-		const form = new formidable.IncomingForm();
-		form.maxFieldsSize = 20 * 1024 * 1024;
-		form.maxFileSize = 0;
-		form.parse(req, function(err, fields) {
-			if (err) {
-				console.error(err);
-				res.writeHead(200, { "Content-Type": "application/json" });
-				res.end(JSON.stringify({ err }));
-				return;
-			}
+		let data = "";
+		req.on("data", function(chunk: string) {
+			data += chunk;
+		});
 
+		req.on("end", function() {
+			console.log(`${req.method} ${req.url} ${new Date().toISOString()}`);
 			request.post(
 				{
 					headers: {
@@ -34,7 +28,7 @@ server.on("request", function(req, res) {
 						"User-Agent": "trycf-gist-server",
 					},
 					url: "https://api.github.com/gists",
-					body: JSON.stringify(fields),
+					body: data,
 				},
 				function(error, response, body) {
 					try {

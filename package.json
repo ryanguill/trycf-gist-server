@@ -12,10 +12,8 @@
 	"author": "Ryan Guill",
 	"license": "ISC",
 	"dependencies": {
-		"@types/formidable": "^1.0.31",
 		"@types/node": "^9.6.5",
 		"@types/request": "^2.47.0",
-		"formidable": "^1.2.1",
 		"request": "^2.85.0",
 		"typescript": "^2.8.1"
 	}
