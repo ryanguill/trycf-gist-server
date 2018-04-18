@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "ES2017",
+    "noImplicitAny": true,
+    "removeComments": true,
+    "preserveConstEnums": true,
+    "sourceMap": true,
+    "module": "commonjs",
+    "outDir": "dist",
+    "strictNullChecks": true,
+    "types": ["node"],
+    "typeRoots": ["node_modules/@types", "app"],
+    "moduleResolution": "node"
+  },
+  "filesGlob": [
+    "./app/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "bower_components"
+  ]
+}
